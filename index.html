@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Generator</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.editor {
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #2c3e50;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.output {
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #ccc;
+    background-color: #34495e;
+    color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: #34495e;
+    color: #fff;
+}
+
+.btn {
+    background-color: #16a085;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1abc9c;
+}
+
+.output-content {
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+/* Futuristic design for output */
+.output-design {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    background: linear-gradient(to right, #0c4b78, #4d6696, #2c3e50);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    color: #fff;
+}
+
+/* Unique styles for each instruction */
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="editor">
+        <h2>Enter Instruction</h2>
+        <textarea id="instruction" placeholder="Write your instruction here..."></textarea>
+        <button class="btn" onclick="generateOutput(); generateCode()">Generate Output & Code</button>
+    </div>
+    <div class="output">
+        <h2>Output</h2>
+        <div id="outputContent" class="output-content">
+            <!-- Output content goes here -->
+        </div>
+    </div>
+    
+</div>
+
+<script>
+function generateOutput() {
+    var instruction = document.getElementById('instruction').value.trim().toLowerCase();
+    var outputContent = document.querySelector('.output-content');
+
+    switch (instruction.toLowerCase()) {
+    case 'login page':
+        outputContent.innerHTML = '<div class="output-box login-page"><h1>Login Page</h1>\n<form>\n<label for="username">Username:</label>\n<input type="text" id="username" name="username">\n<label for="password">Password:</label>\n<input type="password" id="password" name="password">\n<button type="submit">Login</button>\n</form></div>';
+        outputContent.style.backgroundColor = '#1abc9c';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'contact form':
+        outputContent.innerHTML = '<div class="output-box contact-form"><h1>Contact Form</h1>\n<form>\n<label for="name">Name:</label>\n<input type="text" id="name" name="name">\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<label for="message">Message:</label>\n<textarea id="message" name="message"></textarea>\n<button type="submit">Send Message</button>\n</form></div>';
+        outputContent.style.backgroundColor = '#3498db';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'signup form':
+        outputContent.innerHTML = '<div class="output-box signup-form"><h1>Signup Form</h1>\n<form>\n<label for="name">Name:</label>\n<input type="text" id="name" name="name">\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<label for="password">Password:</label>\n<input type="password" id="password" name="password">\n<button type="submit">Sign Up</button>\n</form></div>';
+        outputContent.style.backgroundColor = '#9b59b6';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'newsletter subscription form':
+        outputContent.innerHTML = '<div class="output-box newsletter-subscription-form"><h1>Newsletter Subscription Form</h1>\n<form>\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<button type="submit">Subscribe</button>\n</form></div>';
+        outputContent.style.backgroundColor = '#f1c40f';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'product list':
+        outputContent.innerHTML = '<div class="output-box product-list"><h1>Product List</h1>\n<ul>\n<li>Product 1</li>\n<li>Product 2</li>\n<li>Product 3</li>\n</ul></div>';
+        outputContent.style.backgroundColor = '#2ecc71';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'footer':
+        outputContent.innerHTML = '<div class="output-box footer"><footer>\n<p>Footer content goes here</p>\n</footer></div>';
+        outputContent.style.backgroundColor = '#e74c3c';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case '404 page':
+        outputContent.innerHTML = '<div class="output-box page-not-found"><h1>404 Page Not Found</h1>\n<p>Sorry, the page you are looking for could not be found.</p></div>';
+        outputContent.style.backgroundColor = '#34495e';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'about page':
+        outputContent.innerHTML = '<div class="output-box about-page"><h1>About Us</h1>\n<p>Welcome to our website. Learn more about us here.</p></div>';
+        outputContent.style.backgroundColor = '#3498db';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'faq page':
+        outputContent.innerHTML = '<div class="output-box faq-page"><h1>FAQ</h1>\n<p>Frequently Asked Questions</p></div>';
+        outputContent.style.backgroundColor = '#f39c12';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+    case 'pricing page':
+        outputContent.innerHTML = '<div class="output-box pricing-page"><h1>Pricing</h1>\n<p>Our pricing plans and options</p></div>';
+        outputContent.style.backgroundColor = '#27ae60';
+        outputContent.style.color = '#fff';
+        outputContent.style.padding = '20px';
+        outputContent.style.borderRadius = '10px';
+        // Add more CSS styles as needed
+        break;
+        case 'forgot password page':
+    outputContent.innerHTML = '<div class="output-box forgot-password-page"><h1>Forgot Password</h1>\n<form>\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<button type="submit">Reset Password</button>\n</form></div>';
+    outputContent.style.backgroundColor = '#3498db';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'registration page':
+    outputContent.innerHTML = '<div class="output-box registration-page"><h1>Registration Page</h1>\n<form>\n<label for="username">Username:</label>\n<input type="text" id="username" name="username">\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<label for="password">Password:</label>\n<input type="password" id="password" name="password">\n<button type="submit">Register</button>\n</form></div>';
+    outputContent.style.backgroundColor = '#9b59b6';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'profile page':
+    outputContent.innerHTML = '<div class="output-box profile-page"><h1>Profile Page</h1>\n<p>Welcome, Username!</p>\n<ul>\n<li>Email: user@example.com</li>\n<li>Joined: January 1, 2024</li>\n</ul>\n<button>Edit Profile</button>\n</div>';
+    outputContent.style.backgroundColor = '#f1c40f';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'dashboard page':
+    outputContent.innerHTML = '<div class="output-box dashboard-page"><h1>Dashboard</h1>\n<p>Welcome to your dashboard!</p>\n<ul>\n<li>Total Users: 100</li>\n<li>Total Orders: 50</li>\n</ul>\n</div>';
+    outputContent.style.backgroundColor = '#e67e22';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'settings page':
+    outputContent.innerHTML = '<div class="output-box settings-page"><h1>Settings</h1>\n<form>\n<label for="username">Username:</label>\n<input type="text" id="username" name="username">\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<label for="password">Password:</label>\n<input type="password" id="password" name="password">\n<button type="submit">Save Changes</button>\n</form>\n</div>';
+    outputContent.style.backgroundColor = '#2ecc71';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'contact page':
+    outputContent.innerHTML = '<div class="output-box contact-page"><h1>Contact Us</h1>\n<form>\n<label for="name">Name:</label>\n<input type="text" id="name" name="name">\n<label for="email">Email:</label>\n<input type="email" id="email" name="email">\n<label for="message">Message:</label>\n<textarea id="message" name="message"></textarea>\n<button type="submit">Send Message</button>\n</form>\n</div>';
+    outputContent.style.backgroundColor = '#e74c3c';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+case 'about page':
+    outputContent.innerHTML = '<div class="output-box about-page"><h1>About Us</h1>\n<p>We are a company dedicated to providing high-quality services.</p>\n</div>';
+    outputContent.style.backgroundColor = '#95a5a6';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    // Add more CSS styles as needed
+    break;
+
+    case 'search bar':
+    outputContent.innerHTML = '<div class="output-box search-bar"><h1>Search Bar</h1>\n<form>\n<input type="text" id="search" name="search" placeholder="Search...">\n<button type="submit">Search</button>\n</form></div>';
+    outputContent.style.backgroundColor = '#3498db';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    break;
+
+case 'search results':
+    outputContent.innerHTML = '<div class="output-box search-results"><h1>Search Results</h1>\n<ul>\n<li>Result 1</li>\n<li>Result 2</li>\n<li>Result 3</li>\n</ul></div>';
+    outputContent.style.backgroundColor = '#2ecc71';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    break;
+
+case 'autocomplete search':
+    outputContent.innerHTML = '<div class="output-box autocomplete-search"><h1>Autocomplete Search</h1>\n<form>\n<input type="text" id="autocomplete" name="autocomplete" placeholder="Search...">\n<div class="autocomplete-results">\n<ul>\n<li>Result 1</li>\n<li>Result 2</li>\n<li>Result 3</li>\n</ul>\n</div>\n<button type="submit">Search</button>\n</form></div>';
+    outputContent.style.backgroundColor = '#9b59b6';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    break;
+
+case 'advanced search':
+    outputContent.innerHTML = '<div class="output-box advanced-search"><h1>Advanced Search</h1>\n<form>\n<label for="keyword">Keyword:</label>\n<input type="text" id="keyword" name="keyword">\n<label for="category">Category:</label>\n<select id="category" name="category">\n<option value="option1">Option 1</option>\n<option value="option2">Option 2</option>\n<option value="option3">Option 3</option>\n</select>\n<button type="submit">Search</button>\n</form></div>';
+    outputContent.style.backgroundColor = '#f1c40f';
+    outputContent.style.color = '#fff';
+    outputContent.style.padding = '20px';
+    outputContent.style.borderRadius = '10px';
+    break;
+
+    
+
+    default:
+        outputContent.innerHTML = '<p>No output available for this instruction</p>';
+        break;
+}
+
+
+}
+
+
+</script>
+</body>
+</html>
